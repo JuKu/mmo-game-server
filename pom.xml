@@ -11,6 +11,10 @@
 	<modules>
 		<module>core</module>
 		<module>commons</module>
+		<module>frontend</module>
+		<module>database</module>
+		<module>backend</module>
+		<module>main</module>
 	</modules>
 
 
