@@ -9,7 +9,7 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>database</artifactId>
+	<artifactId>gs-database</artifactId>
 
 
 </project>
