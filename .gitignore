@@ -5,7 +5,7 @@
 *.idea*
 .iml
 *.iml
-*.cfg
+*mysql.cfg
 !*.example.cfg
 !*travis.mysql.cfg
 
