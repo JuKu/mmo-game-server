@@ -9,8 +9,6 @@ import com.jukusoft.mmo.gameserver.core.utils.Utils;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
-import java.net.URISyntaxException;
-
 public class ServerMain {
 
     public static void main (String[] args) {

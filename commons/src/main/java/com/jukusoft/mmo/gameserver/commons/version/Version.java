@@ -3,7 +3,6 @@ package com.jukusoft.mmo.gameserver.commons.version;
 import com.jukusoft.mmo.gameserver.commons.utils.JarUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
