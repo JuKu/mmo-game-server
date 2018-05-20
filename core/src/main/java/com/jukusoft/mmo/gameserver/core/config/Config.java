@@ -3,12 +3,16 @@ package com.jukusoft.mmo.gameserver.core.config;
 import com.carrotsearch.hppc.IntObjectHashMap;
 import com.carrotsearch.hppc.IntObjectMap;
 import com.jukusoft.mmo.gameserver.commons.config.ConfigLoader;
+import com.jukusoft.mmo.gameserver.commons.config.Section;
 import com.jukusoft.mmo.gameserver.commons.logger.LocalLogger;
+import org.ini4j.Ini;
+import org.ini4j.Profile;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Config {
 
@@ -19,6 +23,8 @@ public class Config {
 
     protected static final IntObjectMap<Object> configMap = new IntObjectHashMap<>();
 
+    protected static final IntObjectMap<Section> sectionMap = new IntObjectHashMap<>();
+
     public static <T extends ConfigLoader> T get (Class<T> cls) {
         Object obj = configMap.get(cls.getCanonicalName().hashCode());
 
@@ -27,6 +33,10 @@ public class Config {
         }
 
         return cls.cast(obj);
+    }
+
+    public static Section getSection (final String key) {
+        return sectionMap.get(key.hashCode());
     }
 
     /**
@@ -52,13 +62,36 @@ public class Config {
 
                 //load config file
                 System.out.println("load " + f.getName() + "");
-                Config.loadFile(f);
+
+                try {
+                    Config.loadFile(f);
+                } catch (IOException e) {
+                    LocalLogger.printStacktrace(e);
+                    System.exit(-1);
+                }
             }
         }
     }
 
-    public static void loadFile (File file) {
-        //TODO: add code here
+    public static void loadFile (File file) throws IOException {
+        final Ini ini = new Ini(file);
+
+        //get all sections
+        for (Map.Entry<String, Profile.Section> entry : ini.entrySet()) {
+            LocalLogger.print("Found config section: " + entry.getKey());
+
+            //load section
+            final Profile.Section section = entry.getValue();
+
+            //create new section
+            final Section section1 = new Section();
+
+            for (Map.Entry<String,String> entry1 : section.entrySet()) {
+                section1.put(entry1.getKey(), entry1.getValue());
+            }
+
+            sectionMap.put(entry.getKey().hashCode(), section1);
+        }
 
         loadedConfigs.add(file.getName());
     }

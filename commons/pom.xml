@@ -11,6 +11,15 @@
 
 	<artifactId>gs-commons</artifactId>
 
+	<dependencies>
+		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
+		<dependency>
+			<groupId>com.carrotsearch</groupId>
+			<artifactId>hppc</artifactId>
+			<version>${hppc.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
