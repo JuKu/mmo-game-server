@@ -15,7 +15,7 @@ public class Version {
     protected String buildTime = "n/a";
     protected String createdBy = "n/a";//default: Created-By: Apache Maven 3.3.9
     protected String vendorID = "n/a";//default: Implementation-Vendor-Id: com.jukusoft
-    protected String vendor = "";
+    protected String vendor = "n/a";
 
     /**
     * default constructor

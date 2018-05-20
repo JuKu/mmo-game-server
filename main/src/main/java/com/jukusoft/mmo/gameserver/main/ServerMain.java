@@ -53,6 +53,10 @@ public class ServerMain {
         databaseUpgrader.migrate();
         System.out.println(databaseUpgrader.getInfo());
 
+        Utils.printSection("Database Connection");
+
+        //TODO: connect to database
+
         Utils.printSection("Cache");
 
         LocalLogger.print("Check, if cache directory is writable...");
