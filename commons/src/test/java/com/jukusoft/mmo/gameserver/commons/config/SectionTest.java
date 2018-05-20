@@ -38,4 +38,14 @@ public class SectionTest {
         assertEquals("test-value", section.getOrDefault("test-key", ""));
     }
 
+    @Test
+    public void testGetInt () {
+        WritableSection section = new WritableSection();
+
+        assertEquals(10, section.getIntOrDefault("key", 10));
+
+        section.put("key", "20");
+        assertEquals(20, section.getIntOrDefault("key", 50));
+    }
+
 }

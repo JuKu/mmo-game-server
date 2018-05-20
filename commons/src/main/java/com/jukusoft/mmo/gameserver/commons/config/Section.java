@@ -30,4 +30,14 @@ public class Section {
         return this.getOrDefault(key, null);
     }
 
+    public int getIntOrDefault (String key, int defaultValue) {
+        String value = this.get(key);
+
+        if (value == null) {
+            return defaultValue;
+        }
+
+        return Integer.parseInt(value);
+    }
+
 }
