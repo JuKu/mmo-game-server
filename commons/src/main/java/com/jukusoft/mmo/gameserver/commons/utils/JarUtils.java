@@ -48,7 +48,7 @@ public class JarUtils {
             if (jarPath.contains("!")) {
                 path = jarPath.substring("file:".length(), jarPath.lastIndexOf('!'));
 
-                if (path.startsWith("/")) {
+                if (path.startsWith("/") && PlatformUtils.isWindows()) {
                     path = path.substring(1);
                 }
             } else {
