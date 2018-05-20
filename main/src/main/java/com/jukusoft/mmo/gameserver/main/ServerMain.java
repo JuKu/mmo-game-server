@@ -11,9 +11,13 @@ import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
 import com.jukusoft.mmo.gameserver.core.config.CacheConfig;
+import com.jukusoft.mmo.gameserver.database.Database;
 import com.jukusoft.mmo.gameserver.database.DatabaseUpgrader;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -28,6 +32,10 @@ public class ServerMain {
             System.out.println("Its not allowed to execute this gameserver under root permissions!");
             System.exit(-1);
         }
+
+        //configure basic logging
+        //log4j 2: Configurator.initialize(new DefaultConfiguration());
+        //BasicConfigurator.configure();
 
         //print startup information with version and so on
         CoreInfo.printStartUpInfo(ServerMain.class);
@@ -55,7 +63,8 @@ public class ServerMain {
 
         Utils.printSection("Database Connection");
 
-        //TODO: connect to database
+        //connect to database
+        Database.init(Config.get(MySQLConfig.class));
 
         Utils.printSection("Cache");
 

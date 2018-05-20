@@ -35,6 +35,9 @@
 		<!-- library for high performance Real-Time and Embedded Systems, 5.4.1 -->
 		<javolution.version>6.0.0</javolution.version>
 
+		<!-- log4j -->
+		<log4j.version>2.11.0</log4j.version>
+
 		<!-- ini4j parser -->
 		<ini4j.version>0.5.4</ini4j.version>
 
@@ -46,6 +49,9 @@
 
 		<!-- mysql connector version -->
 		<mysql.connector.version>6.0.6</mysql.connector.version>
+
+		<!-- mysql connection pooling 1-->
+		<hikaricp.version>3.1.0</hikaricp.version>
 
 		<!-- format maven build timestamp to add to manifest -->
 		<!-- <timestamp>${maven.build.timestamp}</timestamp>
@@ -115,7 +121,29 @@
 			<groupId>org.javolution</groupId>
 			<artifactId>javolution-core-java</artifactId>
 			<version>${javolution.version}</version>
+
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<version>2.11.0</version>
+		</dependency> -->
 
 		<!-- for JUnit tests -->
 		<dependency>
