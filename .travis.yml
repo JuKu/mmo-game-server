@@ -12,6 +12,8 @@ services:
 before_install:
   - mysql -e 'DROP DATABASE IF EXISTS my_test_database;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS my_test_database;'
+  - sudo apt-get update
+  - sudo apt-get install proftpd-basic -y
 
 # https://github.com/pear/Net_LDAP2/blob/master/.travis.yml
 #before_script:
