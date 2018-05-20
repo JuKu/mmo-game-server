@@ -1,18 +1,23 @@
 package com.jukusoft.mmo.gameserver.main;
 
 import com.hazelcast.config.CacheSimpleConfig;
-import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.jukusoft.mmo.gameserver.commons.utils.FileUtils;
 import com.jukusoft.mmo.gameserver.commons.version.Version;
 import com.jukusoft.mmo.gameserver.core.CoreInfo;
 import com.jukusoft.mmo.gameserver.commons.utils.Utils;
+import com.jukusoft.mmo.gameserver.core.config.Config;
+import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
+import com.jukusoft.mmo.gameserver.core.config.impl.CacheConfig;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
+import java.io.File;
+
 public class ServerMain {
 
-    public static long startTime = 0;
+    public static final long startTime = System.currentTimeMillis();
 
     public static void main (String[] args) {
         //check, if server is running under root permissions
@@ -25,9 +30,6 @@ public class ServerMain {
         //print startup information with version and so on
         CoreInfo.printStartUpInfo(ServerMain.class);
 
-        //set startup time
-        ServerMain.startTime = System.currentTimeMillis();
-
         Utils.printSection("Version Information");
         System.out.println("Core version: " + new Version(CoreInfo.class).getFullVersion());
         System.out.println("Commons version: " + new Version(Version.class).getFullVersion());
@@ -35,7 +37,17 @@ public class ServerMain {
 
         Utils.printSection("Configuration");
 
-        //TODO: load configs
+        //add config loader
+        Config.addLoader(new MySQLConfig(), MySQLConfig.class, "mysql.cfg");
+        Config.addLoader(new CacheConfig(), CacheConfig.class, "cache.cfg");
+
+        //load config and print every confif file
+        Config.load(new File("./config"), true);
+
+        Utils.printSection("Cache");
+
+        //create cache directory, if absent and check, if directory is writable
+        FileUtils.createWritableDirIfAbsent(CacheConfig.CACHE_PATH);
 
         Utils.printSection("Hazelcast");
 
@@ -60,7 +72,7 @@ public class ServerMain {
 
     public static HazelcastInstance createHazelcastInstance () {
         //create an new hazelcast instance
-        Config config = new Config();
+        com.hazelcast.config.Config config = new com.hazelcast.config.Config();
 
         //disable hazelcast logging
         config.setProperty("hazelcast.logging.type", "none");
