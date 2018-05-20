@@ -20,7 +20,7 @@ public class ServerMain {
 
         //TODO: print version information
 
-        System.out.println("jar path: " + JarUtils.getJarFileOfClass(ServerMain.class).getAbsolutePath());
+        //System.out.println("jar path: " + JarUtils.getJarFileOfClass(ServerMain.class).getAbsolutePath());
 
         Utils.printSection("Hazelcast");
 

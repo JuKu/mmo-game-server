@@ -3,8 +3,8 @@ package com.jukusoft.mmo.gameserver.commons.version;
 import com.jukusoft.mmo.gameserver.commons.utils.JarUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 
@@ -16,6 +16,7 @@ public class Version {
     protected String buildTime = "n/a";
     protected String createdBy = "n/a";//default: Created-By: Apache Maven 3.3.9
     protected String vendorID = "n/a";//default: Implementation-Vendor-Id: com.jukusoft
+    protected String vendor = "";
 
     /**
     * default constructor
@@ -37,7 +38,11 @@ public class Version {
             return;
         }
 
-        System.out.println("file path: " + file.getAbsolutePath());
+        if (!file.exists()) {
+            throw new IllegalStateException("JAR file doesnt exists: " + file.getAbsolutePath());
+        }
+
+        System.out.println("jar path: " + file.getAbsolutePath());
 
         //open jar file
         try (JarFile jarFile = new JarFile(file)) {
@@ -45,33 +50,65 @@ public class Version {
             final Attributes attrs = jarFile.getManifest().getMainAttributes();
 
             //get revision number
-            this.revision = attrs.getValue("Implementation-Build");
-
-            if (this.revision == null) {
-                this.revision = "n/a";
-            }
+            this.revision = this.getOrDefault(attrs, "Implementation-Build", "n/a");
 
             //get version number
-            this.version = attrs.getValue("Implementation-Version");
+            this.version = this.getOrDefault(attrs, "Implementation-Version", "n/a");
 
             //get build jdk
-            this.buildJdk = attrs.getValue("Build-Jdk");
+            this.buildJdk = this.getOrDefault(attrs, "Build-Jdk", "n/a");
 
             //get build time
-            this.buildTime = attrs.getValue("Implementation-Time");
+            this.buildTime = this.getOrDefault(attrs, "Implementation-Time", "n/a");
 
             //get build tool, if available
-            this.createdBy = attrs.getValue("Created-By");
-
-            if (this.createdBy == null) {
-                this.createdBy = "n/a";
-            }
+            this.createdBy = this.getOrDefault(attrs, "Created-By", "n/a");
 
             //get vendor id
-            this.vendorID = attrs.getValue("Implementation-Vendor-Id");
+            this.vendorID = this.getOrDefault(attrs, "Implementation-Vendor-Id", "n/a");
+
+            //get vendor, if available
+            this.vendor = this.getOrDefault(attrs, "Implementation-Vendor", "n/a");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    protected String getOrDefault (final Attributes attrs, String key, String defaultStr) {
+        String value = attrs.getValue(key);
+
+        if (value == null) {
+            return defaultStr;
+        }
+
+        return value;
+    }
+
+    public String getRevision() {
+        return revision;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public String getBuildJdk() {
+        return buildJdk;
+    }
+
+    public String getBuildTime() {
+        return buildTime;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public String getVendorID() {
+        return vendorID;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
 }
