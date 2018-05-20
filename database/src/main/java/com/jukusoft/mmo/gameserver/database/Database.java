@@ -5,6 +5,9 @@ import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class Database {
 
     protected static HikariDataSource dataSource = null;
@@ -37,6 +40,10 @@ public class Database {
 
     public static HikariDataSource getDataSource () {
         return dataSource;
+    }
+
+    public static Connection getConnection () throws SQLException {
+        return dataSource.getConnection();
     }
 
 }
