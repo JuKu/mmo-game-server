@@ -12,6 +12,13 @@
 	<artifactId>gs-core</artifactId>
 
 	<dependencies>
+		<!-- gs-commons -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- vertx-core for buffers -->
 		<dependency>
 			<groupId>io.vertx</groupId>
