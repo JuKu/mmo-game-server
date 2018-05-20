@@ -24,13 +24,12 @@ public class JarUtils {
 
         //see also https://stackoverflow.com/questions/1983839/determine-which-jar-file-a-class-is-from
 
-        //jar:file:/jdk/jre/lib/rt.jar!/java/lang/String.class --> file:/projects/classes/pkg/MyClass$1.class
-        //String clsResource = cls.getName().replace('.', '/') + ".class";
+        //https://sajidmoinuddin.wordpress.com/2009/03/31/how-to-get-the-jar-file-location-of-a-loaded-class/
+
+        //http://sacharya.com/find-the-jar-file-given-a-class-name/
 
         String classResource = cls.getName().replace('.', '/') + ".class";
-
         URL location = cls.getResource('/' + cls.getName().replace('.', '/') + ".class");
-
         String jarPath = location.getPath();
 
         String path = "";
