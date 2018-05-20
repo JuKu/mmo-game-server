@@ -44,7 +44,7 @@ public class JarUtils {
             path = jarPath.substring("file:".length(), jarPath.lastIndexOf('!'));
         } else if (jarPath.startsWith("file:")) {
             if (jarPath.contains("!")) {
-                path = jarPath.substring(0, jarPath.lastIndexOf("!"));
+                path = jarPath.substring(0, jarPath.lastIndexOf('!'));
             } else {
                 int tail = jarPath.indexOf(classResource);
                 path = jarPath.substring(0, tail);

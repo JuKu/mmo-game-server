@@ -40,4 +40,16 @@ public class JarUtilsTest {
         assertEquals(false, path.isEmpty());
     }
 
+    @Test
+    public void testPathToFile () {
+        String jarPath = "jar:file:jar-file.jar!test.class";
+        JarUtils.pathToFile(jarPath, "");
+    }
+
+    @Test
+    public void testPathToFile1 () {
+        String jarPath = "file:jar-file.jar";
+        JarUtils.pathToFile(jarPath, "");
+    }
+
 }
