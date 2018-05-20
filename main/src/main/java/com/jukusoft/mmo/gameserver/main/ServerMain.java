@@ -12,6 +12,8 @@ import io.vertx.core.Vertx;
 
 public class ServerMain {
 
+    public static long startTime = 0;
+
     public static void main (String[] args) {
         //check, if server is running under root permissions
         if (Utils.isRootUser()) {
@@ -23,10 +25,17 @@ public class ServerMain {
         //print startup information with version and so on
         CoreInfo.printStartUpInfo(ServerMain.class);
 
+        //set startup time
+        ServerMain.startTime = System.currentTimeMillis();
+
         Utils.printSection("Version Information");
         System.out.println("Core version: " + new Version(CoreInfo.class).getFullVersion());
         System.out.println("Commons version: " + new Version(Version.class).getFullVersion());
         System.out.println("game server version: " + new Version(ServerMain.class).getFullVersion());
+
+        Utils.printSection("Configuration");
+
+        //TODO: load configs
 
         Utils.printSection("Hazelcast");
 

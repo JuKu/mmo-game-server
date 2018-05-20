@@ -33,6 +33,13 @@
 			<version>${vertx.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- High Performance Primitive Collections for Java, https://github.com/carrotsearch/hppc -->
+		<dependency>
+			<groupId>com.carrotsearch</groupId>
+			<artifactId>hppc</artifactId>
+			<version>${hppc.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
