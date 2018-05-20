@@ -8,6 +8,7 @@ addons:
 
 services:
   - mysql
+  - proftpd
 
 before_install:
   - mysql -e 'DROP DATABASE IF EXISTS my_test_database;'
