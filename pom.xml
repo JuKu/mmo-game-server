@@ -32,7 +32,7 @@
 		<!-- hppc, high performance lists & maps, https://github.com/carrotsearch/hppc -->
 		<hppc.version>0.7.3</hppc.version>
 
-		<!-- library for high performance Real-Time and Embedded Systems -->
+		<!-- library for high performance Real-Time and Embedded Systems, 5.4.1 -->
 		<javolution.version>6.0.0</javolution.version>
 
 		<!-- ini4j parser -->
@@ -101,9 +101,19 @@
 		</dependency>
 
 		<!-- library for high performance Real-Time and Embedded Systems -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.javolution</groupId>
 			<artifactId>javolution</artifactId>
+			<version>${javolution.version}</version>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>javolution</groupId>
+			<artifactId>javolution</artifactId>
+			<version>5.4.1</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.javolution</groupId>
+			<artifactId>javolution-core-java</artifactId>
 			<version>${javolution.version}</version>
 		</dependency>
 

@@ -47,6 +47,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- library for high performance Real-Time and Embedded Systems -->
+		<!-- <dependency>
+			<groupId>org.javolution</groupId>
+			<artifactId>javolution</artifactId>
+			<version>${javolution.version}</version>
+		</dependency> -->
+
 		<!-- https://mvnrepository.com/artifact/io.vertx/vertx-core -->
 		<dependency>
 			<groupId>io.vertx</groupId>
