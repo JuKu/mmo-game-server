@@ -11,6 +11,50 @@
 
 	<artifactId>gs-main</artifactId>
 
+	<dependencies>
+		<!-- gs-core -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.vertx/vertx-core -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<!-- Hazelcast -->
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+			<version>${hazelcast.version}</version>
+		</dependency>
+
+		<!-- Vert.x Cluster-Management with Hazelcast -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-hazelcast</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<!-- jdbc client -->
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-jdbc-client</artifactId>
+			<version>${vertx.version}</version>
+		</dependency>
+
+		<!-- MySQL connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
