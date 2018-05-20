@@ -14,6 +14,8 @@ public class Version {
     protected String version = "n/a";
     protected String buildJdk = "n/a";
     protected String buildTime = "n/a";
+    protected String createdBy = "n/a";//default: Created-By: Apache Maven 3.3.9
+    protected String vendorID = "n/a";//default: Implementation-Vendor-Id: com.jukusoft
 
     /**
     * default constructor
@@ -53,6 +55,16 @@ public class Version {
 
             //get build time
             this.buildTime = attrs.getValue("Implementation-Time");
+
+            //get build tool, if available
+            this.createdBy = attrs.getValue("Created-By");
+
+            if (this.createdBy == null) {
+                this.createdBy = "n/a";
+            }
+
+            //get vendor id
+            this.vendorID = attrs.getValue("Implementation-Vendor-Id");
         } catch (IOException e) {
             e.printStackTrace();
         }

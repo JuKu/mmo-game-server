@@ -30,10 +30,8 @@ public class JarUtils {
         String classResource = cls.getName().replace('.', '/') + ".class";
 
         URL location = cls.getResource('/' + cls.getName().replace('.', '/') + ".class");
-        System.err.println("location: " + location);
 
         String jarPath = location.getPath();
-        System.err.println("jarPath: " + jarPath);
 
         String path = "";
 
