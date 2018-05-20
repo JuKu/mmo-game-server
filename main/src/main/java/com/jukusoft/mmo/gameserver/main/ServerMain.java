@@ -15,9 +15,6 @@ import com.jukusoft.mmo.gameserver.database.Database;
 import com.jukusoft.mmo.gameserver.database.DatabaseUpgrader;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Logger;
 
 import java.io.File;
 
@@ -28,22 +25,18 @@ public class ServerMain {
     public static void main (String[] args) {
         //check, if server is running under root permissions
         if (Utils.isRootUser()) {
-            System.out.println("WARNING! WARNING! WARNING!");
-            System.out.println("Its not allowed to execute this gameserver under root permissions!");
+            LocalLogger.print("WARNING! WARNING! WARNING!");
+            LocalLogger.print("Its not allowed to execute this gameserver under root permissions!");
             System.exit(-1);
         }
-
-        //configure basic logging
-        //log4j 2: Configurator.initialize(new DefaultConfiguration());
-        //BasicConfigurator.configure();
 
         //print startup information with version and so on
         CoreInfo.printStartUpInfo(ServerMain.class);
 
         Utils.printSection("Version Information");
-        System.out.println("Core version: " + new Version(CoreInfo.class).getFullVersion());
-        System.out.println("Commons version: " + new Version(Version.class).getFullVersion());
-        System.out.println("game server version: " + new Version(ServerMain.class).getFullVersion());
+        LocalLogger.print("Core version: " + new Version(CoreInfo.class).getFullVersion());
+        LocalLogger.print("Commons version: " + new Version(Version.class).getFullVersion());
+        LocalLogger.print("game server version: " + new Version(ServerMain.class).getFullVersion());
 
         Utils.printSection("Configuration");
 
@@ -59,7 +52,7 @@ public class ServerMain {
         //create or upgrade database schema
         DatabaseUpgrader databaseUpgrader = new DatabaseUpgrader(Config.get(MySQLConfig.class));
         databaseUpgrader.migrate();
-        System.out.println(databaseUpgrader.getInfo());
+        LocalLogger.print(databaseUpgrader.getInfo());
 
         Utils.printSection("Database Connection");
 
@@ -91,7 +84,7 @@ public class ServerMain {
     }
 
     protected static void log (String msg) {
-        System.out.println(msg);
+        LocalLogger.print(msg);
     }
 
     public static HazelcastInstance createHazelcastInstance () {

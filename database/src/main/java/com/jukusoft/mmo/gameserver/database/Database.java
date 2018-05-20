@@ -12,6 +12,10 @@ public class Database {
 
     protected static HikariDataSource dataSource = null;
 
+    protected Database () {
+        //
+    }
+
     public static void init (MySQLConfig mySQLConfig) {
         LocalLogger.print("connect to mysql database: " + mySQLConfig.getJDBCUrl());
 
@@ -44,6 +48,10 @@ public class Database {
 
     public static Connection getConnection () throws SQLException {
         return dataSource.getConnection();
+    }
+
+    public static void close () {
+        dataSource.close();
     }
 
 }
