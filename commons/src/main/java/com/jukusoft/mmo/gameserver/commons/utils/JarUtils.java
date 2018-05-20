@@ -32,12 +32,16 @@ public class JarUtils {
         URL location = cls.getResource('/' + cls.getName().replace('.', '/') + ".class");
         String jarPath = location.getPath();
 
+        return pathToFile(jarPath, classResource);
+    }
+
+    protected static File pathToFile (String jarPath, String classResource) {
         String path = "";
 
         if (jarPath.startsWith("jar:file:")) {
             //its a jar file
 
-            path = jarPath.substring("file:".length(), jarPath.lastIndexOf("!"));
+            path = jarPath.substring("file:".length(), jarPath.lastIndexOf('!'));
         } else if (jarPath.startsWith("file:")) {
             if (jarPath.contains("!")) {
                 path = jarPath.substring(0, jarPath.lastIndexOf("!"));

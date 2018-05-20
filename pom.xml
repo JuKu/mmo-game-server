@@ -44,6 +44,10 @@
 		<!-- mysql connector version -->
 		<mysql.connector.version>6.0.6</mysql.connector.version>
 
+		<!-- format maven build timestamp to add to manifest -->
+		<!-- <timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format> -->
+
 		<jacoco.reportPath>${project.basedir}/../target/jacoco.exec</jacoco.reportPath>
 
 		<!-- Sonar properties-->

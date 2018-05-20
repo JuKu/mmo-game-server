@@ -47,6 +47,10 @@ public class Version {
             //get revision number
             this.revision = attrs.getValue("Implementation-Build");
 
+            if (this.revision == null) {
+                this.revision = "n/a";
+            }
+
             //get version number
             this.version = attrs.getValue("Implementation-Version");
 
