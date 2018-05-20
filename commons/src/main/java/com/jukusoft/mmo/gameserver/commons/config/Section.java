@@ -3,16 +3,17 @@ package com.jukusoft.mmo.gameserver.commons.config;
 import com.carrotsearch.hppc.IntObjectHashMap;
 import com.carrotsearch.hppc.IntObjectMap;
 
+/**
+* config section
+ *
+ * This class is readonly!
+*/
 public class Section {
 
     protected IntObjectMap<String> valuesMap = new IntObjectHashMap<>();
 
     public Section () {
         //
-    }
-
-    public void put (String key, String value) {
-        valuesMap.put(key.hashCode(), value);
     }
 
     public String getOrDefault (String key, String defaultStr) {

@@ -4,6 +4,7 @@ import com.carrotsearch.hppc.IntObjectHashMap;
 import com.carrotsearch.hppc.IntObjectMap;
 import com.jukusoft.mmo.gameserver.commons.config.ConfigLoader;
 import com.jukusoft.mmo.gameserver.commons.config.Section;
+import com.jukusoft.mmo.gameserver.commons.config.WritableSection;
 import com.jukusoft.mmo.gameserver.commons.logger.LocalLogger;
 import org.ini4j.Ini;
 import org.ini4j.Profile;
@@ -84,7 +85,7 @@ public class Config {
             final Profile.Section section = entry.getValue();
 
             //create new section
-            final Section section1 = new Section();
+            final WritableSection section1 = new WritableSection();
 
             for (Map.Entry<String,String> entry1 : section.entrySet()) {
                 section1.put(entry1.getKey(), entry1.getValue());
