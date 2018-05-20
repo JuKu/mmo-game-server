@@ -20,7 +20,7 @@ public class Section {
         String value = this.valuesMap.get(key.hashCode());
 
         if (value == null) {
-            return value;
+            return defaultStr;
         }
 
         return value;

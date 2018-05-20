@@ -26,6 +26,10 @@ public class Config {
 
     protected static final IntObjectMap<Section> sectionMap = new IntObjectHashMap<>();
 
+    protected Config () {
+        //
+    }
+
     public static <T extends ConfigLoader> T get (Class<T> cls) {
         Object obj = configMap.get(cls.getCanonicalName().hashCode());
 
