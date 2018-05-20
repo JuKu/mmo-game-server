@@ -16,6 +16,7 @@ public class MySQLConfig implements ConfigLoader {
     protected String user = "";
     protected String password = "";
     protected String prefix = "";
+    protected int maxPoolSize = 30;
 
     public MySQLConfig() {
         //
@@ -41,6 +42,8 @@ public class MySQLConfig implements ConfigLoader {
         this.user = section.getOrDefault("user", "");
         this.password = section.get("password");
         this.prefix = section.getOrDefault("prefix", "");
+
+        this.maxPoolSize = Integer.parseInt(section.getOrDefault("max_pool_size", "30"));
     }
 
     protected int getInt (Profile.Section section, String key) {
@@ -73,6 +76,10 @@ public class MySQLConfig implements ConfigLoader {
 
     public void setPrefix (String prefix) {
         this.prefix = prefix;
+    }
+
+    public int getMaxPoolSize () {
+        return this.maxPoolSize;
     }
 
 }

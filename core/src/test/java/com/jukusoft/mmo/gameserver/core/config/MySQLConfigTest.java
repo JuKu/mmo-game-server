@@ -35,6 +35,8 @@ public class MySQLConfigTest {
         assertEquals("root", mySQLConfig.getUser());
         assertEquals("testpass", mySQLConfig.getPassword());
         assertEquals("mmo_", mySQLConfig.getPrefix());
+
+        assertEquals(30, mySQLConfig.getMaxPoolSize());
     }
 
     @Test
