@@ -5,6 +5,7 @@ import org.ini4j.Ini;
 import org.ini4j.Profile;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class CacheConfig implements ConfigLoader {
@@ -19,7 +20,7 @@ public class CacheConfig implements ConfigLoader {
         }
 
         if (!file.exists()) {
-            throw new IllegalStateException("mysql config file doesnt exists: " + file.getAbsolutePath());
+            throw new FileNotFoundException("mysql config file doesnt exists: " + file.getAbsolutePath());
         }
 
         Ini ini = new Ini(file);
