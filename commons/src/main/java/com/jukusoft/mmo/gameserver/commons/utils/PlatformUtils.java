@@ -19,19 +19,19 @@ public class PlatformUtils {
     }
 
     //name of operating system
-    protected static final String osName;
+    protected static final String OS_NAME;
 
     //OS type
     protected static final OS_TYPE type;
 
     static {
-        osName = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
+        OS_NAME = System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH);
 
-        if (osName.contains("win")) {
+        if (OS_NAME.contains("win")) {
             type = OS_TYPE.WINDOWS;
-        } else if (osName.contains("nux")) {
+        } else if (OS_NAME.contains("nux")) {
             type = OS_TYPE.LINUX;
-        } else if (osName.contains("mac") || osName.contains("darwin")) {
+        } else if (OS_NAME.contains("mac") || OS_NAME.contains("darwin")) {
             type = OS_TYPE.MAC_OS;
         } else {
             type = OS_TYPE.UNKNOWN;
