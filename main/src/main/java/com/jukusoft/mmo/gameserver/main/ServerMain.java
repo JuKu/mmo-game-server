@@ -13,6 +13,10 @@ public class ServerMain {
     public static void main (String[] args) {
         System.out.println("======== Gameserver ========");
 
+        Utils.printSection("Version Information");
+
+        //TODO: print version information
+
         Utils.printSection("Hazelcast");
 
         //create new hazelcast instance
