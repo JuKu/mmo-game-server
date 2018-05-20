@@ -32,6 +32,9 @@
 		<!-- hppc, high performance lists & maps, https://github.com/carrotsearch/hppc -->
 		<hppc.version>0.7.3</hppc.version>
 
+		<!-- library for high performance Real-Time and Embedded Systems -->
+		<javolution.version>6.0.0</javolution.version>
+
 		<!-- ini4j parser -->
 		<ini4j.version>0.5.4</ini4j.version>
 
@@ -95,6 +98,13 @@
 			<artifactId>junit-platform-runner</artifactId>
 			<version>1.1.0</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- library for high performance Real-Time and Embedded Systems -->
+		<dependency>
+			<groupId>org.javolution</groupId>
+			<artifactId>javolution</artifactId>
+			<version>${javolution.version}</version>
 		</dependency>
 
 		<!-- for JUnit tests -->
