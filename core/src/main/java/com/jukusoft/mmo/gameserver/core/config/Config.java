@@ -115,7 +115,7 @@ public class Config {
         try {
             loader.load(f);
         } catch (IOException e) {
-            e.printStackTrace();
+            LocalLogger.printStacktrace(e);
             System.exit(-1);
         }
 
