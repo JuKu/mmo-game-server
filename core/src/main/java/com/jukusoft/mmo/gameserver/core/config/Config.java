@@ -51,7 +51,7 @@ public class Config {
             if (f.getAbsolutePath().endsWith(".cfg")) {
                 if (f.getAbsolutePath().contains(".example")) {
                     //skip example config
-                    System.out.println("skip " + f.getName() + " (example config)");
+                    LocalLogger.print("skip " + f.getName() + " (example config)");
 
                     continue;
                 }
@@ -62,7 +62,7 @@ public class Config {
                 }
 
                 //load config file
-                System.out.println("load " + f.getName() + "");
+                LocalLogger.print("load " + f.getName() + "");
 
                 try {
                     Config.loadFile(f);

@@ -9,7 +9,7 @@ import com.jukusoft.mmo.gameserver.core.CoreInfo;
 import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
-import com.jukusoft.mmo.gameserver.core.config.impl.CacheConfig;
+import com.jukusoft.mmo.gameserver.core.config.CacheConfig;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
@@ -17,7 +17,7 @@ import java.io.File;
 
 public class ServerMain {
 
-    public static final long startTime = System.currentTimeMillis();
+    public static final long STARTUP_TIME = System.currentTimeMillis();
 
     public static void main (String[] args) {
         //check, if server is running under root permissions

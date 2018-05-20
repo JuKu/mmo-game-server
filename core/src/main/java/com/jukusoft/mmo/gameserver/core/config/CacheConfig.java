@@ -1,4 +1,4 @@
-package com.jukusoft.mmo.gameserver.core.config.impl;
+package com.jukusoft.mmo.gameserver.core.config;
 
 import com.jukusoft.mmo.gameserver.commons.config.ConfigLoader;
 import org.ini4j.Ini;
