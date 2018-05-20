@@ -1,6 +1,9 @@
-package com.jukusoft.mmo.gameserver.core.utils;
+package com.jukusoft.mmo.gameserver.commons.utils;
 
+import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class UtilsTest {
 
@@ -22,6 +25,11 @@ public class UtilsTest {
     @Test
     public void testPrintSection () {
         Utils.printSection("my-section");
+    }
+
+    @Test
+    public void testIsRootUser () {
+        assertEquals(false, Utils.isRootUser());
     }
 
 }

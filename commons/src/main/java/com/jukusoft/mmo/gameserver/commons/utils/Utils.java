@@ -1,4 +1,4 @@
-package com.jukusoft.mmo.gameserver.core.utils;
+package com.jukusoft.mmo.gameserver.commons.utils;
 
 public class Utils {
 
@@ -29,6 +29,10 @@ public class Utils {
     public static void printSection (final String section) {
         String s = getSection(section);
         System.out.println("\n" + s);
+    }
+
+    public static boolean isRootUser () {
+        return System.getProperty("user.name").equals("root") && System.getProperty("user.home").equals("/root");
     }
 
 }

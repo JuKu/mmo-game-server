@@ -6,13 +6,20 @@ import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.jukusoft.mmo.gameserver.commons.version.Version;
 import com.jukusoft.mmo.gameserver.core.CoreInfo;
-import com.jukusoft.mmo.gameserver.core.utils.Utils;
+import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
 public class ServerMain {
 
     public static void main (String[] args) {
+        //check, if server is running under root permissions
+        if (Utils.isRootUser()) {
+            System.out.println("WARNING! WARNING! WARNING!");
+            System.out.println("Its not allowed to execute this gameserver under root permissions!");
+            System.exit(-1);
+        }
+
         //print startup information with version and so on
         CoreInfo.printStartUpInfo(ServerMain.class);
 
