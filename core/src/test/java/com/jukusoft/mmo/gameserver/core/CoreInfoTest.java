@@ -9,4 +9,9 @@ public class CoreInfoTest {
         new CoreInfo();
     }
 
+    @Test
+    public void testPrintStartUpInfo () {
+        CoreInfo.printStartUpInfo(CoreInfoTest.class);
+    }
+
 }

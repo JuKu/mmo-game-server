@@ -1,7 +1,6 @@
 package com.jukusoft.mmo.gameserver.core;
 
 import com.jukusoft.mmo.gameserver.commons.version.Version;
-import com.jukusoft.mmo.gameserver.core.utils.Utils;
 
 public class CoreInfo {
 
