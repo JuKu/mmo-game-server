@@ -26,6 +26,13 @@
 	</scm>
 
 	<dependencies>
+		<!-- gs-commons -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- gs-core -->
 		<dependency>
 			<groupId>com.jukusoft</groupId>

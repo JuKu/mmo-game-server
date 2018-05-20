@@ -33,6 +33,7 @@ public class VersionTest {
         assertEquals(false, version.getCreatedBy().contains("n/a"));
         assertEquals(true, version.getVendorID().contains("n/a"));
         assertEquals(false, version.getVendor().contains("n/a"));
+        assertEquals(false, version.getFullVersion().isEmpty());
     }
 
 }

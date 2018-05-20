@@ -108,4 +108,8 @@ public class Version {
     public String getVendor() {
         return vendor;
     }
+
+    public String getFullVersion () {
+        return this.getVersion() + "-" + this.getRevision();
+    }
 }

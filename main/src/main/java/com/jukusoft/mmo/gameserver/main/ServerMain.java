@@ -4,7 +4,8 @@ import com.hazelcast.config.CacheSimpleConfig;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.jukusoft.mmo.gameserver.commons.utils.JarUtils;
+import com.jukusoft.mmo.gameserver.commons.version.Version;
+import com.jukusoft.mmo.gameserver.core.CoreInfo;
 import com.jukusoft.mmo.gameserver.core.utils.Utils;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
@@ -12,13 +13,13 @@ import io.vertx.core.Vertx;
 public class ServerMain {
 
     public static void main (String[] args) {
-        System.out.println("======== Gameserver ========");
+        //print startup information with version and so on
+        CoreInfo.printStartUpInfo(ServerMain.class);
 
         Utils.printSection("Version Information");
-
-        //TODO: print version information
-
-        System.out.println("jar path: " + JarUtils.getJarFileOfClass(ServerMain.class).getAbsolutePath());
+        System.out.println("Core version: " + new Version(CoreInfo.class).getFullVersion());
+        System.out.println("Commons version: " + new Version(Version.class).getFullVersion());
+        System.out.println("game server version: " + new Version(ServerMain.class).getFullVersion());
 
         Utils.printSection("Hazelcast");
 
