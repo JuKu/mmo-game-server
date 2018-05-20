@@ -42,8 +42,6 @@ public class Version {
             throw new IllegalStateException("JAR file doesnt exists: " + file.getAbsolutePath());
         }
 
-        System.out.println("jar path: " + file.getAbsolutePath());
-
         //open jar file
         try (JarFile jarFile = new JarFile(file)) {
             //get jar file attributes from jar manifest file

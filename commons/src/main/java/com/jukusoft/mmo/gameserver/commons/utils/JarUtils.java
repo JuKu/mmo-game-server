@@ -32,15 +32,11 @@ public class JarUtils {
         URL location = cls.getResource('/' + cls.getName().replace('.', '/') + ".class");
         String jarPath = location.getPath();
 
-        System.out.println("test2: " + jarPath);
-
         return pathToFile(jarPath, classResource);
     }
 
     protected static File pathToFile (String jarPath, String classResource) {
         String path = "";
-
-        System.out.println("jarPath: " + jarPath);
 
         jarPath = jarPath.replace("%20", " ");
 
@@ -55,8 +51,6 @@ public class JarUtils {
                 if (path.startsWith("/")) {
                     path = path.substring(1);
                 }
-
-                System.out.println("text: " + path);
             } else {
                 int tail = jarPath.indexOf(classResource);
                 path = jarPath.substring(0, tail);
