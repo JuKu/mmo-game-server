@@ -23,7 +23,7 @@ public class CoreInfo {
         System.out.println("*");
         System.out.println("*  Build JDK: " + version.getBuildJdk());
         System.out.println("*  Build time: " + version.getBuildTime());
-        System.out.println("*  Vendor ID: " + version.getVendorID());
+        System.out.println("*  Vendor ID: " + (version.getVendor().isEmpty() ? version.getVendorID() : version.getVendor()));
         System.out.println("*");
         System.out.println("***************************************************************/");
     }
