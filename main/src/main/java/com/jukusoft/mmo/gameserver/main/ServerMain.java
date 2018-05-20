@@ -3,6 +3,7 @@ package com.jukusoft.mmo.gameserver.main;
 import com.hazelcast.config.CacheSimpleConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.jukusoft.mmo.gameserver.commons.logger.LocalLogger;
 import com.jukusoft.mmo.gameserver.commons.utils.FileUtils;
 import com.jukusoft.mmo.gameserver.commons.version.Version;
 import com.jukusoft.mmo.gameserver.core.CoreInfo;
@@ -10,6 +11,7 @@ import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
 import com.jukusoft.mmo.gameserver.core.config.CacheConfig;
+import com.jukusoft.mmo.gameserver.database.DatabaseUpgrader;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
@@ -44,7 +46,16 @@ public class ServerMain {
         //load config and print every confif file
         Config.load(new File("./config"), true);
 
+        Utils.printSection("Upgrade Database");
+
+        //create or upgrade database schema
+        DatabaseUpgrader databaseUpgrader = new DatabaseUpgrader(Config.get(MySQLConfig.class));
+        databaseUpgrader.migrate();
+        System.out.println(databaseUpgrader.getInfo());
+
         Utils.printSection("Cache");
+
+        LocalLogger.print("Check, if cache directory is writable...");
 
         //create cache directory, if absent and check, if directory is writable
         FileUtils.createWritableDirIfAbsent(CacheConfig.CACHE_PATH);

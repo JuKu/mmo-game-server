@@ -40,6 +40,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- gs-database -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-database</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.vertx/vertx-core -->
 		<dependency>
 			<groupId>io.vertx</groupId>

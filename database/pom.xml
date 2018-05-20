@@ -11,6 +11,36 @@
 
 	<artifactId>gs-database</artifactId>
 
+	<dependencies>
+		<!-- gs-commons -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- gs-core -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- MySQL connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+
+		<!-- flyway for database upgrades / migration -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
