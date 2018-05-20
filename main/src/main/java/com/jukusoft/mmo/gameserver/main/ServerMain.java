@@ -81,6 +81,14 @@ public class ServerMain {
 
         //get vertx instance
         Vertx vertx = vertxManager.getVertx();
+
+        Utils.printSection("Global settings");
+
+        //TODO: load global settings
+
+        Utils.printSection("TCP Frontend Server");
+
+        //TODO: start tcp server
     }
 
     protected static void log (String msg) {
