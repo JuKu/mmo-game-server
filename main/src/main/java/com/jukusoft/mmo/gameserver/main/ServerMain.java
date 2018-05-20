@@ -4,9 +4,12 @@ import com.hazelcast.config.CacheSimpleConfig;
 import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.jukusoft.mmo.gameserver.commons.utils.JarUtils;
 import com.jukusoft.mmo.gameserver.core.utils.Utils;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
+
+import java.net.URISyntaxException;
 
 public class ServerMain {
 
@@ -16,6 +19,8 @@ public class ServerMain {
         Utils.printSection("Version Information");
 
         //TODO: print version information
+
+        System.out.println("jar path: " + JarUtils.getJarFileOfClass(ServerMain.class).getAbsolutePath());
 
         Utils.printSection("Hazelcast");
 

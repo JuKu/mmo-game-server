@@ -30,6 +30,11 @@ public class Version {
         //get jar file
         File file = JarUtils.getJarFileOfClass(cls);
 
+        if (file == null) {
+            //we cannot read manifest information, because class wasnt loaded from jar file
+            return;
+        }
+
         System.out.println("file path: " + file.getAbsolutePath());
 
         //open jar file
