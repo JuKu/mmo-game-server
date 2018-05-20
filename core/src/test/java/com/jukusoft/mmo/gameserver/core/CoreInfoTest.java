@@ -14,4 +14,9 @@ public class CoreInfoTest {
         CoreInfo.printStartUpInfo(CoreInfoTest.class);
     }
 
+    @Test
+    public void testPrintStartUpInfo1 () {
+        CoreInfo.printStartUpInfo(String.class);
+    }
+
 }

@@ -40,4 +40,28 @@ public class UtilsTest {
         assertEquals(true, Utils.isRootUser());
     }
 
+    @Test
+    public void testIsRootUser2 () {
+        System.setProperty("user.name", "user1");
+        System.setProperty("user.home", "/root");
+
+        assertEquals(false, Utils.isRootUser());
+    }
+
+    @Test
+    public void testIsRootUser3 () {
+        System.setProperty("user.name", "root");
+        System.setProperty("user.home", "/user1");
+
+        assertEquals(false, Utils.isRootUser());
+    }
+
+    @Test
+    public void testIsRootUser4 () {
+        System.setProperty("user.name", "user1");
+        System.setProperty("user.home", "/user1");
+
+        assertEquals(false, Utils.isRootUser());
+    }
+
 }
