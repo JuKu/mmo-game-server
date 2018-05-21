@@ -40,6 +40,12 @@ public class TCPFrontend {
 
         NetServerOptions options = new NetServerOptions().setPort(getPort());
 
+        String hostName = Config.getSection("Network").getOrDefault("host", "0.0.0.0");
+
+        if (!hostName.equals("0.0.0.0")) {
+            options.setHost(hostName);
+        }
+
         //Scaling - sharing TCP servers, see https://vertx.io/docs/vertx-core/java/#_scaling_sharing_tcp_servers
         for (int i = 0; i < nOfThreads; i++) {
             //create new tcp server
