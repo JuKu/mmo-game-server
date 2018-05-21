@@ -11,6 +11,7 @@ import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
 import com.jukusoft.mmo.gameserver.core.config.CacheConfig;
+import com.jukusoft.mmo.gameserver.core.region.RegionManager;
 import com.jukusoft.mmo.gameserver.core.server.GameServer;
 import com.jukusoft.mmo.gameserver.core.server.IGameServer;
 import com.jukusoft.mmo.gameserver.database.Database;
@@ -89,10 +90,15 @@ public class ServerMain {
 
         //TODO: load global settings
 
+        Utils.printSection("Region Manager");
+
+        //TODO: add region manager
+        RegionManager regionManager = null;
+
         Utils.printSection("Game Server");
 
         LocalLogger.print("start gameserver...");
-        IGameServer gameServer = new GameServer();
+        IGameServer gameServer = new GameServer(regionManager);
 
         Utils.printSection("TCP Frontend Server");
 

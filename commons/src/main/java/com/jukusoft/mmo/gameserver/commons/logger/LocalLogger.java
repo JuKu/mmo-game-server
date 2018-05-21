@@ -16,6 +16,10 @@ public class LocalLogger {
         System.out.println(message);
     }
 
+    public static void warn (String message) {
+        System.err.println(message);
+    }
+
     public static void printStacktrace (Throwable e) {
         e.printStackTrace();
     }
