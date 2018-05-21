@@ -5,8 +5,6 @@ import com.jukusoft.mmo.gameserver.core.server.IGameServer;
 import io.vertx.core.Handler;
 import io.vertx.core.net.NetSocket;
 
-import java.util.logging.Level;
-
 public class ConnectHandler implements Handler<NetSocket> {
 
     protected final IGameServer gameServer;
@@ -27,7 +25,7 @@ public class ConnectHandler implements Handler<NetSocket> {
         handler.init();
 
         //add handler
-        socket.handler(buffer -> handler.receive(buffer));
+        socket.handler(handler::receive);
         socket.closeHandler(v -> handler.onClose());
     }
 

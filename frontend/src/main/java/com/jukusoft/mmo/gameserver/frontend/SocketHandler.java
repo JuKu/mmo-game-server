@@ -42,6 +42,9 @@ public class SocketHandler {
         short version = content.getShort(2);
 
         //TODO: check protocol version
+        if (version != Protocol.MSG_PROTOCOL_VERSION) {
+            LocalLogger.print("Warning! Proxy server with version " + version + " is maybe not compatible with gs protocol version " + Protocol.MSG_PROTOCOL_VERSION);
+        }
 
         //check, if user has choosen character
         if (this.cid == 0 && type != Protocol.MSG_TYPE_GS) {
@@ -70,6 +73,8 @@ public class SocketHandler {
             case Protocol.MSG_EXTENDED_TYPE_JOIN:
                 //player join sector
                 LocalLogger.print("player " + this.cid + " try to join sector " + this.sectorID + " on instance " + this.sectorID);
+
+                this.cid = cid;
 
                 //get sector
                 this.sectorID = content.getInt(Protocol.MSG_BODY_OFFSET);

@@ -27,6 +27,8 @@ public class TCPFrontend {
     */
     protected final List<NetServer> servers = new ArrayList<>();
 
+    protected static final String CONFIG_NETWORK = "Network";
+
     /**
     * default constructor
     */
@@ -37,11 +39,11 @@ public class TCPFrontend {
 
     public void start () {
         //get number of threads
-        int nOfThreads = Config.getSection("Network").getIntOrDefault("nOfThreads", 4);
+        int nOfThreads = Config.getSection(CONFIG_NETWORK).getIntOrDefault("nOfThreads", 4);
 
         NetServerOptions options = new NetServerOptions().setPort(getPort());
 
-        String hostName = Config.getSection("Network").getOrDefault("host", "0.0.0.0");
+        String hostName = Config.getSection(CONFIG_NETWORK).getOrDefault("host", "0.0.0.0");
 
         if (!hostName.equals("0.0.0.0")) {
             options.setHost(hostName);
@@ -73,7 +75,7 @@ public class TCPFrontend {
     }
 
     protected int getPort () {
-        return Config.getSection("Network").getIntOrDefault("port", 20893);
+        return Config.getSection(CONFIG_NETWORK).getIntOrDefault("port", 20893);
     }
 
 }
