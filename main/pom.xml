@@ -47,6 +47,13 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<!-- gs-frontend -->
+		<dependency>
+			<groupId>com.jukusoft</groupId>
+			<artifactId>gs-frontend</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<!-- library for high performance Real-Time and Embedded Systems -->
 		<!-- <dependency>
 			<groupId>org.javolution</groupId>

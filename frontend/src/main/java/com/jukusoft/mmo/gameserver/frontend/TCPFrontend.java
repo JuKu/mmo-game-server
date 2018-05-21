@@ -1,5 +1,6 @@
 package com.jukusoft.mmo.gameserver.frontend;
 
+import com.jukusoft.mmo.gameserver.commons.logger.LocalLogger;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.server.IGameServer;
 import io.vertx.core.Vertx;
@@ -44,6 +45,9 @@ public class TCPFrontend {
 
         if (!hostName.equals("0.0.0.0")) {
             options.setHost(hostName);
+            LocalLogger.print("start tcp server on host " + hostName + " on port " + getPort());
+        } else {
+            LocalLogger.print("start tcp server on port " + getPort());
         }
 
         //Scaling - sharing TCP servers, see https://vertx.io/docs/vertx-core/java/#_scaling_sharing_tcp_servers

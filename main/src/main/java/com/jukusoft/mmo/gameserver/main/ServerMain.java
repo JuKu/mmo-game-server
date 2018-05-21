@@ -11,8 +11,11 @@ import com.jukusoft.mmo.gameserver.commons.utils.Utils;
 import com.jukusoft.mmo.gameserver.core.config.Config;
 import com.jukusoft.mmo.gameserver.core.config.MySQLConfig;
 import com.jukusoft.mmo.gameserver.core.config.CacheConfig;
+import com.jukusoft.mmo.gameserver.core.server.GameServer;
+import com.jukusoft.mmo.gameserver.core.server.IGameServer;
 import com.jukusoft.mmo.gameserver.database.Database;
 import com.jukusoft.mmo.gameserver.database.DatabaseUpgrader;
+import com.jukusoft.mmo.gameserver.frontend.TCPFrontend;
 import com.jukusoft.mmo.gameserver.main.vertx.VertxManager;
 import io.vertx.core.Vertx;
 
@@ -86,9 +89,16 @@ public class ServerMain {
 
         //TODO: load global settings
 
+        Utils.printSection("Game Server");
+
+        LocalLogger.print("start gameserver...");
+        IGameServer gameServer = new GameServer();
+
         Utils.printSection("TCP Frontend Server");
 
-        //TODO: start tcp server
+        //start tcp server
+        TCPFrontend tcpServer = new TCPFrontend(vertx, gameServer);
+        tcpServer.start();
     }
 
     protected static void log (String msg) {
