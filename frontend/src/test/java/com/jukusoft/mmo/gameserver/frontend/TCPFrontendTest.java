@@ -24,7 +24,7 @@ public class TCPFrontendTest {
 
         //start server
         TCPFrontend server = new TCPFrontend(vertx, gameServer);
-        server.start();
+        //server.start();
 
         Thread.sleep(1000);
 
