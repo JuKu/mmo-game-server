@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `${prefix}sectors` (
+CREATE TABLE IF NOT EXISTS `${prefix}regions` (
 `regionID` int(10) NOT NULL,
   `title` varchar(255) NOT NULL,
   `map_info_path` varchar(600) NOT NULL,
@@ -6,15 +6,15 @@ CREATE TABLE IF NOT EXISTS `${prefix}sectors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indizes für die Tabelle `sectors`
+-- Indizes für die Tabelle `regions`
 --
-ALTER TABLE `${prefix}sectors`
+ALTER TABLE `${prefix}regions`
  ADD PRIMARY KEY (`regionID`);
 
 --
--- AUTO_INCREMENT für Tabelle `sectors`
+-- AUTO_INCREMENT für Tabelle `regions`
 --
-ALTER TABLE `${prefix}sectors`
+ALTER TABLE `${prefix}regions`
 MODIFY `regionID` int(10) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE IF NOT EXISTS `${prefix}characters` (

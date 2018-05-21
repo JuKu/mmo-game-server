@@ -95,6 +95,8 @@ public class ServerMain {
         //TODO: add region manager
         RegionManager regionManager = null;
 
+        //TODO: start regions
+
         Utils.printSection("Game Server");
 
         LocalLogger.print("start gameserver...");

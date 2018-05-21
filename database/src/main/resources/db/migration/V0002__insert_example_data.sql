@@ -1,4 +1,4 @@
-INSERT INTO `${prefix}sectors` (
+INSERT INTO `${prefix}regions` (
     `regionID`, `title`, `map_info_path`, `max_players`
 ) VALUES (
     '1', 'Dev Room', 'dev_room.tmx', '200'
