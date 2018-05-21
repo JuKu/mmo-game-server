@@ -15,7 +15,7 @@ public class SocketHandler {
 
     //character id
     protected int cid = 0;
-    protected int sectorID = 0;
+    protected int regionID = 0;
     protected int instanceID = 0;
 
     public SocketHandler (IGameServer gameServer, NetSocket socket) {
@@ -72,21 +72,26 @@ public class SocketHandler {
         switch (extendedType) {
             case Protocol.MSG_EXTENDED_TYPE_JOIN:
                 //player join sector
-                LocalLogger.print("player " + this.cid + " try to join sector " + this.sectorID + " on instance " + this.sectorID);
+                LocalLogger.print("player " + this.cid + " try to join sector " + this.regionID + " on instance " + this.regionID);
 
                 this.cid = cid;
 
                 //get sector
-                this.sectorID = content.getInt(Protocol.MSG_BODY_OFFSET);
+                this.regionID = content.getInt(Protocol.MSG_BODY_OFFSET);
                 this.instanceID = content.getInt(Protocol.MSG_BODY_OFFSET + 4);
 
+                //get join position on region
+                float x = content.getFloat(Protocol.MSG_BODY_OFFSET + 8);
+                float y = content.getFloat(Protocol.MSG_BODY_OFFSET + 12);
+                float z = content.getFloat(Protocol.MSG_BODY_OFFSET + 16);
+
                 //try to join
-                this.join();
+                this.join(x, y, z);
 
                 break;
 
             case Protocol.MSG_EXTENDED_TYPE_LEAVE:
-                LocalLogger.print("player " + this.cid + " leaves sector " + this.sectorID + " on instance " + this.instanceID);
+                LocalLogger.print("player " + this.cid + " leaves sector " + this.regionID + " on instance " + this.instanceID);
 
                 //player leave sector
                 this.leave();
@@ -101,22 +106,22 @@ public class SocketHandler {
     /**
     * if proxy has send cid than we have to join
     */
-    protected void join () {
-        this.gameServer.join(this.cid, this.sectorID, this.instanceID, content -> {
+    protected void join (float x, float y, float z) {
+        this.gameServer.join(this.cid, this.regionID, this.instanceID, x, y, z, content -> {
             //send message back to proxy server
             socket.write(content);
         }, b -> {
             if (b) {
                 //joined successfully
 
-                LocalLogger.print("player " + this.cid + " joins sector " + this.sectorID + " on instance " + this.sectorID);
+                LocalLogger.print("player " + this.cid + " joins sector " + this.regionID + " on instance " + this.regionID);
 
                 //send message back to proxy server
                 socket.write(MessageFactory.createJoinSuccessMessage(this.cid));
             } else {
                 //join failed
 
-                LocalLogger.print("Error! player " + this.cid + " couldnt join sector " + this.sectorID + " on instance " + this.sectorID);
+                LocalLogger.print("Error! player " + this.cid + " couldnt join sector " + this.regionID + " on instance " + this.regionID);
 
                 //send message back to proxy server
                 socket.write(MessageFactory.createJoinFailedMessage(this.cid));

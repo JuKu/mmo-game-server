@@ -9,21 +9,26 @@ import io.vertx.core.buffer.Buffer;
 public class GameServer implements IGameServer {
 
     //this map stores on which sector character is
-    protected IntIntMap cidToSectorIDMap = new IntIntHashMap();
+    protected IntIntMap cidToRegionIDMap = new IntIntHashMap();
 
     //this map stores on which instance character is
     protected IntIntMap cidToInstanceIDMap = new IntIntHashMap();
 
     @Override
     public void receive(Buffer content) {
+        //get cid
+        int cid = content.getInt(4);
 
+        //TODO: find region of character
+
+        //TODO: send message to region
     }
 
     @Override
-    public void join(int cid, int sectorID, int instanceID, MessageReceiver<Buffer> receiver, Handler<Boolean> joinedHandler) {
+    public void join(int cid, int regionID, int instanceID, float x, float y, float z, MessageReceiver<Buffer> receiver, Handler<Boolean> joinedHandler) {
         //TODO: check, if sector instance is running on this server, else fail
 
-        this.cidToSectorIDMap.put(cid, sectorID);
+        this.cidToRegionIDMap.put(cid, regionID);
         this.cidToInstanceIDMap.put(cid, instanceID);
 
         //TODO: load player (character) data
@@ -35,7 +40,7 @@ public class GameServer implements IGameServer {
 
     @Override
     public void leave(int cid) {
-        int sectorID = this.cidToSectorIDMap.get(cid);
+        int regionID = this.cidToRegionIDMap.get(cid);
         int instanceID = this.cidToInstanceIDMap.get(cid);
 
         //TODO: remove player from sector

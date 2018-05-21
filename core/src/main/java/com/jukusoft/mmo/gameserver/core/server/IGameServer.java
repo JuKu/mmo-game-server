@@ -15,11 +15,11 @@ public interface IGameServer {
     * register new connection and join player to a specific sector
      *
      * @param cid character id
-     * @param sectorID id of sector
+     * @param regionID id of sector
      * @param receiver message receiver so gameserver can send messages back to proxy server
      * @param joinedHandler handler which is called if join was successfully or has failed, for example if sector doesnt exists
     */
-    public void join (int cid, int sectorID, int instanceID, MessageReceiver<Buffer> receiver, Handler<Boolean> joinedHandler);
+    public void join (int cid, int regionID, int instanceID, float x, float y, float z, MessageReceiver<Buffer> receiver, Handler<Boolean> joinedHandler);
 
     /**
     * connection was closed
