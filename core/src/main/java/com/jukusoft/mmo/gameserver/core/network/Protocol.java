@@ -2,6 +2,10 @@ package com.jukusoft.mmo.gameserver.core.network;
 
 public class Protocol {
 
+    protected Protocol () {
+        //
+    }
+
     /**
      * protocol information
      */
