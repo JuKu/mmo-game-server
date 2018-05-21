@@ -99,6 +99,10 @@ public class ServerMain {
         //start tcp server
         TCPFrontend tcpServer = new TCPFrontend(vertx, gameServer);
         tcpServer.start();
+
+        Utils.printSection("Server started");
+        LocalLogger.print("server started successfully!");
+        LocalLogger.print("");
     }
 
     protected static void log (String msg) {
