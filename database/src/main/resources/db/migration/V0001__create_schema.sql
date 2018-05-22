@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS `${prefix}regions` (
 `regionID` int(10) NOT NULL,
   `title` varchar(255) NOT NULL,
   `map_info_path` varchar(600) NOT NULL,
-  `max_players` int(10) NOT NULL DEFAULT '200'
+  `max_players` int(10) NOT NULL DEFAULT '200',
+  `locked` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
