@@ -30,6 +30,39 @@ CREATE TABLE IF NOT EXISTS `${prefix}characters` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Tabellenstruktur für Tabelle `${prefix}users`
+--
+
+CREATE TABLE IF NOT EXISTS `${prefix}users` (
+`userID` int(10) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `online` int(10) NOT NULL DEFAULT '0',
+  `last_online` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `activated` int(10) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `${prefix}users`
+--
+ALTER TABLE `${prefix}users`
+ ADD PRIMARY KEY (`userID`), ADD UNIQUE KEY `username` (`username`), ADD KEY `online` (`online`,`last_online`);
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `${prefix}users`
+--
+ALTER TABLE `${prefix}users`
+MODIFY `userID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- Indizes für die Tabelle `${prefix}characters`
 --
 ALTER TABLE `${prefix}characters`
@@ -42,7 +75,7 @@ ALTER TABLE `${prefix}characters`
 MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- Tabellenstruktur für Tabelle `mmo_races`
+-- Tabellenstruktur für Tabelle `${prefix}races`
 --
 
 CREATE TABLE IF NOT EXISTS `${prefix}races` (
@@ -55,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `${prefix}races` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
--- Indizes für die Tabelle `mmo_races`
+-- Indizes für die Tabelle `${prefix}races`
 --
 ALTER TABLE `${prefix}races`
  ADD PRIMARY KEY (`id`), ADD KEY `selectable` (`selectable`);
@@ -65,7 +98,7 @@ ALTER TABLE `${prefix}races`
 --
 
 --
--- AUTO_INCREMENT für Tabelle `mmo_races`
+-- AUTO_INCREMENT für Tabelle `${prefix}races`
 --
 ALTER TABLE `${prefix}races`
 MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
