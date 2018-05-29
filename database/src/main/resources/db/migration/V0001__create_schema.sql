@@ -22,12 +22,24 @@ CREATE TABLE IF NOT EXISTS `${prefix}characters` (
 `cid` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` enum('PLAYER','NPC') NOT NULL DEFAULT 'PLAYER',
-  `userid` int(10) NOT NULL DEFAULT '-1',
+  `userID` int(10) NOT NULL DEFAULT '-1',
   `data` text NOT NULL,
   `current_regionID` int(10) NOT NULL DEFAULT '1',
   `auto_join` int(10) NOT NULL DEFAULT '0',
   `visible` int(10) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indizes für die Tabelle `${prefix}characters`
+--
+ALTER TABLE `${prefix}characters`
+ ADD PRIMARY KEY (`cid`), ADD KEY `userID` (`userID`), ADD KEY `current_regionID` (`current_regionID`), ADD KEY `auto_join` (`auto_join`);
+
+--
+-- AUTO_INCREMENT für Tabelle `${prefix}characters`
+--
+ALTER TABLE `${prefix}characters`
+MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tabellenstruktur für Tabelle `${prefix}users`
@@ -61,18 +73,6 @@ ALTER TABLE `${prefix}users`
 --
 ALTER TABLE `${prefix}users`
 MODIFY `userID` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- Indizes für die Tabelle `${prefix}characters`
---
-ALTER TABLE `${prefix}characters`
- ADD PRIMARY KEY (`cid`), ADD KEY `userid` (`userid`), ADD KEY `current_regionID` (`current_regionID`), ADD KEY `auto_join` (`auto_join`);
-
---
--- AUTO_INCREMENT für Tabelle `${prefix}characters`
---
-ALTER TABLE `${prefix}characters`
-MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tabellenstruktur für Tabelle `${prefix}races`
