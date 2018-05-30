@@ -19,12 +19,16 @@ ALTER TABLE `${prefix}regions`
 MODIFY `regionID` int(10) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE IF NOT EXISTS `${prefix}characters` (
-`cid` int(10) NOT NULL,
+  `cid` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` enum('PLAYER','NPC') NOT NULL DEFAULT 'PLAYER',
   `userID` int(10) NOT NULL DEFAULT '-1',
   `data` text NOT NULL,
   `current_regionID` int(10) NOT NULL DEFAULT '1',
+  `first_game` int(10) NOT NULL DEFAULT '1',
+  'pos_x' int(10) NOT NULL DEFAULT '-1',
+  'pos_y' int(10) NOT NULL DEFAULT '-1',
+  'pos_z' int(10) NOT NULL DEFAULT '-1',
   `auto_join` int(10) NOT NULL DEFAULT '0',
   `visible` int(10) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
