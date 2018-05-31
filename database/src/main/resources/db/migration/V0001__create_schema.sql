@@ -25,12 +25,14 @@ CREATE TABLE IF NOT EXISTS `${prefix}characters` (
   `userID` int(10) NOT NULL DEFAULT '-1',
   `data` text NOT NULL,
   `current_regionID` int(10) NOT NULL DEFAULT '1',
+  `instanceID` int(10) NOT NULL DEFAULT '1',
   `first_game` int(10) NOT NULL DEFAULT '1',
   `pos_x` int(10) NOT NULL DEFAULT '-1',
   `pos_y` int(10) NOT NULL DEFAULT '-1',
   `pos_z` int(10) NOT NULL DEFAULT '-1',
   `auto_join` int(10) NOT NULL DEFAULT '0',
-  `visible` int(10) NOT NULL DEFAULT '1'
+  `visible` int(10) NOT NULL DEFAULT '1',
+  `activated` int(10) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

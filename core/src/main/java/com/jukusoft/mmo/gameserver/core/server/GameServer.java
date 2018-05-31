@@ -56,7 +56,7 @@ public class GameServer implements IGameServer {
         int regionID = this.cidToRegionIDMap.get(cid);
         int instanceID = this.cidToInstanceIDMap.get(cid);
 
-        //TODO: remove player from sector
+        //TODO: remove player from region
     }
 
 }
