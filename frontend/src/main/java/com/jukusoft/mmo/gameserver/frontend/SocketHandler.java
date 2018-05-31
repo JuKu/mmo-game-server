@@ -5,22 +5,23 @@ import com.jukusoft.mmo.gameserver.commons.utils.ByteUtils;
 import com.jukusoft.mmo.gameserver.core.network.MessageFactory;
 import com.jukusoft.mmo.gameserver.core.network.Protocol;
 import com.jukusoft.mmo.gameserver.core.server.IGameServer;
+import com.jukusoft.mmo.gameserver.core.stream.BufferStream;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetSocket;
 
 public class SocketHandler {
 
     protected final IGameServer gameServer;
-    protected final NetSocket socket;
+    protected final BufferStream bufferStream;
 
     //character id
     protected int cid = 0;
     protected int regionID = 0;
     protected int instanceID = 0;
 
-    public SocketHandler (IGameServer gameServer, NetSocket socket) {
+    public SocketHandler (IGameServer gameServer, BufferStream bufferStream) {
         this.gameServer = gameServer;
-        this.socket = socket;
+        this.bufferStream = bufferStream;
     }
 
     public void init () {
@@ -109,7 +110,7 @@ public class SocketHandler {
     protected void join (float x, float y, float z) {
         this.gameServer.join(this.cid, this.regionID, this.instanceID, x, y, z, content -> {
             //send message back to proxy server
-            socket.write(content);
+            bufferStream.write(content);
         }, b -> {
             if (b) {
                 //joined successfully
@@ -117,20 +118,24 @@ public class SocketHandler {
                 LocalLogger.print("player " + this.cid + " joins sector " + this.regionID + " on instance " + this.regionID);
 
                 //send message back to proxy server
-                socket.write(MessageFactory.createJoinSuccessMessage(this.cid));
+                bufferStream.write(MessageFactory.createJoinSuccessMessage(this.cid));
             } else {
                 //join failed
 
                 LocalLogger.print("Error! player " + this.cid + " couldnt join sector " + this.regionID + " on instance " + this.regionID);
 
                 //send message back to proxy server
-                socket.write(MessageFactory.createJoinFailedMessage(this.cid));
+                bufferStream.write(MessageFactory.createJoinFailedMessage(this.cid));
             }
         });
     }
 
     protected void leave () {
         this.gameServer.leave(this.cid);
+    }
+
+    public void send (Buffer content) {
+        this.bufferStream.write(content);
     }
 
     public void onClose () {
