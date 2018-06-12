@@ -3,6 +3,8 @@ package com.jukusoft.mmo.gameserver.main;
 import com.hazelcast.config.CacheSimpleConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IList;
+import com.jukusoft.mmo.gameserver.commons.config.Section;
 import com.jukusoft.mmo.gameserver.commons.logger.LocalLogger;
 import com.jukusoft.mmo.gameserver.commons.utils.FileUtils;
 import com.jukusoft.mmo.gameserver.commons.version.Version;
@@ -107,6 +109,13 @@ public class ServerMain {
         //start tcp server
         TCPFrontend tcpServer = new TCPFrontend(vertx, gameServer);
         tcpServer.start();
+
+        //register server on hazelcast
+        IList<String> gsList = hazelcastInstance.getList("gs-list");
+        Section section = Config.getSection("Network");
+        String localIP = section.getOrDefault("localAddress", "127.0.0.1");
+        int localPort = section.getIntOrDefault("port", 20893);
+        gsList.add(localIP + ":" + localPort);
 
         Utils.printSection("Server started");
         LocalLogger.print("server started successfully!");
